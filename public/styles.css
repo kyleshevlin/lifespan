@@ -1,0 +1,21 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.birthdate_form {
+  margin-bottom: 1em;
+}
+
+.week {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 1px;
+}
+
+.week.is-in-the-past {
+  background: red;
+}
