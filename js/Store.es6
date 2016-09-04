@@ -2,7 +2,7 @@ const Redux = require('redux')
 const { connect } = require('react-redux')
 
 const weeksInLife = 4680
-let initialWeeks = []
+const initialWeeks = []
 
 for (let i = 0; i < weeksInLife; i++) {
   initialWeeks.push({
@@ -14,42 +14,48 @@ for (let i = 0; i < weeksInLife; i++) {
 const initialState = {
   birthdate: '',
   weeks: initialWeeks,
-  weeksLived: ''
+  weeksLived: 0
 }
 
-const calculation = (state, action) => {
-  let birthdate = action.value
-  let newWeeks = initialWeeks
-  let diffWeeks = ''
-  let pattern = /^(0[1-9]|1[0-2])[\/](0[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/
-
-  if (pattern.test(birthdate)) {
-    let today = new Date()
-    let birthday = new Date(birthdate)
-    let timeDiff = Math.abs(today.getTime() - birthday.getTime())
-    diffWeeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7))
-
-    newWeeks = state.weeks.map((week, index) => {
-      let inThePast = index < diffWeeks
-      return {
-        id: week.id,
-        inThePast
-      }
-    })
+const birthdateUpdateAction = (state, action) => {
+  const birthdate = action.value
+  const pattern = /^(0[1-9]|1[0-2])[\/](0[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/
+  let weeksState = {
+    weeks: initialWeeks,
+    weeksLived: 0
   }
 
-  return Object.assign(
-    {},
-    state,
-    { birthdate, weeks: newWeeks, weeksLived: diffWeeks.toString()
+  if (pattern.test(birthdate)) {
+    weeksState = weeksUpdate(state.weeks, birthdate)
+  }
+
+  return Object.assign({}, state, { birthdate, weeks: weeksState.weeks, weeksLived: weeksState.weeksLived })
+}
+
+const weeksUpdate = (weeks, birthdate) => {
+  const todayTime = new Date().getTime()
+  const birthdateTime = new Date(birthdate).getTime()
+  const weeksLived = Math.floor((todayTime - birthdateTime) / (1000 * 3600 * 24 * 7))
+
+  if (weeksLived < 0) {
+    return {
+      weeks,
+      weeksLived: 0
     }
-  )
+  }
+
+  const newWeeks = weeks.map((week, index) => {
+    let inThePast = index < weeksLived
+    return { id: week.id, inThePast }
+  })
+
+  return { weeks: newWeeks, weeksLived }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'BIRTHDATE_UPDATE':
-      return calculation(state, action)
+      return birthdateUpdateAction(state, action)
 
     default:
       return state

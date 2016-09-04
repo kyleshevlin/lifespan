@@ -1,30 +1,22 @@
 const React = require('react')
-const { func, string } = React.PropTypes
+const { func, string, number } = React.PropTypes
 const { connector } = require('./Store')
 
 const BirthdateInput = React.createClass({
   propTypes: {
     birthdate: string,
-    weeksLived: string,
-    setBirthdate: func,
-    submitBirthdate: func
+    weeksLived: number,
+    setBirthdate: func
   },
 
   handleChange (event) {
     this.props.setBirthdate(event.target.value)
   },
 
-  handleSubmit (event) {
-    this.props.submitBirthdate()
-    event.preventDefault()
-  },
-
   render () {
     let weekInflection = 'weeks'
 
-    if (this.props.weeksLived === '') {
-      weekInflection = ''
-    } else if (this.props.weeksLived === '1') {
+    if (this.props.weeksLived === 1) {
       weekInflection = 'week'
     }
 
