@@ -1,10 +1,11 @@
 {
-  "name": "tim-urban-life-example",
+  "name": "lifespan",
   "version": "0.1.0",
   "description": "A visual depiction of every week in a 90 year life and all the ones you have spent already",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
     "build": "webpack",
     "watch": "webpack --watch"
   },
@@ -33,6 +34,7 @@
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }
