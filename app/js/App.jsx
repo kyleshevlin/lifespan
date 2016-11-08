@@ -1,9 +1,8 @@
-const React = require('react')
-const { render } = require('react-dom')
-const { store } = require('./Store')
-const { Provider } = require('react-redux')
-const BirthdateInput = require('./BirthdateInput')
-const Life = require('./Life')
+import React from 'react'
+import store from './Store'
+import { Provider } from 'react-redux'
+import BirthdateInput from './components/BirthdateInput'
+import Life from './components/Life'
 
 const App = () => {
   return (
@@ -23,4 +22,4 @@ const App = () => {
   )
 }
 
-render(<App />, document.getElementById('app'))
+export default App

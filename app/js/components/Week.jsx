@@ -1,4 +1,5 @@
-const React = require('react')
+import React from 'react'
+
 const { bool } = React.PropTypes
 
 const Week = React.createClass({
@@ -14,4 +15,4 @@ const Week = React.createClass({
   }
 })
 
-module.exports = Week
+export default Week

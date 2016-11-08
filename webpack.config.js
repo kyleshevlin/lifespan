@@ -2,31 +2,31 @@ const path = require('path')
 
 module.exports = {
   context: __dirname,
-  entry: './js/ClientApp.jsx',
+  entry: './app/js/BrowserEntry.jsx',
   output: {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
     publicPath: '/public/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.es6']
+    extensions: ['', '.js', '.jsx']
   },
   stats: {
     colors: true,
     reasons: true,
-    chunks: true
+    chunks: false
   },
   module: {
     preLoaders: [
       {
-        test: /\.(jsx?|es6)$/,
+        test: /\.(jsx?)$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ],
     loaders: [
       {
-        test: /\.(jsx?|es6)$/,
+        test: /\.(jsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       }

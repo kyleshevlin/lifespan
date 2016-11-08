@@ -1,7 +1,8 @@
-const React = require('react')
+import React from 'react'
+import { connect } from 'react-redux'
+import Week from './Week'
+
 const { arrayOf, object } = React.PropTypes
-const Week = require('./Week')
-const { connector } = require('./Store')
 
 const Life = React.createClass({
   propTypes: {
@@ -21,4 +22,10 @@ const Life = React.createClass({
   }
 })
 
-module.exports = connector(Life)
+const mapStateToProps = (state) => {
+  return {
+    weeks: state.weeks
+  }
+}
+
+export default connect(mapStateToProps)(Life)

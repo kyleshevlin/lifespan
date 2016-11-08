@@ -1,16 +1,14 @@
-const React = require('react')
+import React from 'react'
+import { connect } from 'react-redux'
+import { birthdateUpdate } from '../actions'
+
 const { func, string, number } = React.PropTypes
-const { connector } = require('./Store')
 
 const BirthdateInput = React.createClass({
   propTypes: {
     birthdate: string,
     weeksLived: number,
-    setBirthdate: func
-  },
-
-  handleChange (event) {
-    this.props.setBirthdate(event.target.value)
+    onBirthdateUpdate: func
   },
 
   render () {
@@ -29,7 +27,26 @@ const BirthdateInput = React.createClass({
         </div>
       </div>
     )
+  },
+
+  handleChange (event) {
+    this.props.onBirthdateUpdate(event.target.value)
   }
 })
 
-module.exports = connector(BirthdateInput)
+const mapStateToProps = (state) => {
+  return {
+    birthdate: state.birthdate,
+    weeksLived: state.weeksLived
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBirthdateUpdate (value) {
+      dispatch(birthdateUpdate(value))
+    }
+  }
+}
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(BirthdateInput)
