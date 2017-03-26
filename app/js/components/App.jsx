@@ -1,8 +1,8 @@
 import React from 'react'
-import store from './Store'
 import { Provider } from 'react-redux'
-import BirthdateInput from './components/BirthdateInput'
-import Life from './components/Life'
+import store from '../store'
+import BirthdateInput from './BirthdateInput'
+import Life from './Life'
 
 const App = () => {
   return (

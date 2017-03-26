@@ -1,8 +1,8 @@
-import { BIRTHDATE_UPDATE } from '../actionTypes'
+import * as types from '../constants/actionTypes'
 
 export function birthdateUpdate (value) {
   return {
-    type: BIRTHDATE_UPDATE,
+    type: types.BIRTHDATE_UPDATE,
     value
   }
 }

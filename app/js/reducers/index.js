@@ -1,4 +1,4 @@
-import { BIRTHDATE_UPDATE } from '../actionTypes'
+import * as types from '../constants/actionTypes'
 
 const weeksInLife = 4680
 const initialWeeks = []
@@ -52,7 +52,7 @@ const updateWeeks = (state, action) => {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case BIRTHDATE_UPDATE:
+    case types.BIRTHDATE_UPDATE:
       return handleBirthdateInput(state, action)
 
     default:
