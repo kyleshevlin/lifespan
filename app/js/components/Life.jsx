@@ -1,31 +1,14 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { PropTypes } from 'react'
 import Week from './Week'
 
-const { arrayOf, object } = React.PropTypes
+const Life = ({ weeks }) => (
+  <div className='life'>
+    {weeks.map(week => <Week inThePast={week.inThePast} key={week.id} />)}
+  </div>
+)
 
-const Life = React.createClass({
-  propTypes: {
-    weeks: arrayOf(object)
-  },
-
-  render () {
-    return (
-      <div className='life'>
-        {
-          this.props.weeks.map(week => {
-            return <Week inThePast={week.inThePast} key={week.id} />
-          })
-        }
-      </div>
-    )
-  }
-})
-
-const mapStateToProps = (state) => {
-  return {
-    weeks: state.weeks
-  }
+Life.propTypes = {
+  weeks: PropTypes.arrayOf(PropTypes.object)
 }
 
-export default connect(mapStateToProps)(Life)
+export default Life

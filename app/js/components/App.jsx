@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from '../store'
-import BirthdateInput from './BirthdateInput'
-import Life from './Life'
+import BirthdateFormContainer from '../containers/BirthdateFormContainer'
+import LifeContainer from '../containers/LifeContainer'
 
 const App = () => {
   return (
@@ -15,8 +15,8 @@ const App = () => {
         <p>
           Below, you will see a circle for every week in a 90-year lifespan. It's a lot of weeks. 4,680 to be exact. Enter your birthdate into the input below and see how many weeks you have lived, and how many you have remaining.
         </p>
-        <BirthdateInput />
-        <Life />
+        <BirthdateFormContainer />
+        <LifeContainer />
       </div>
     </Provider>
   )

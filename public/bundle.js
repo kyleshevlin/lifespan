@@ -21449,13 +21449,13 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _BirthdateInput = __webpack_require__(207);
+	var _BirthdateFormContainer = __webpack_require__(207);
 
-	var _BirthdateInput2 = _interopRequireDefault(_BirthdateInput);
+	var _BirthdateFormContainer2 = _interopRequireDefault(_BirthdateFormContainer);
 
-	var _Life = __webpack_require__(209);
+	var _LifeContainer = __webpack_require__(211);
 
-	var _Life2 = _interopRequireDefault(_Life);
+	var _LifeContainer2 = _interopRequireDefault(_LifeContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21481,8 +21481,8 @@
 	        null,
 	        'Below, you will see a circle for every week in a 90-year lifespan. It\'s a lot of weeks. 4,680 to be exact. Enter your birthdate into the input below and see how many weeks you have lived, and how many you have remaining.'
 	      ),
-	      _react2.default.createElement(_BirthdateInput2.default, null),
-	      _react2.default.createElement(_Life2.default, null)
+	      _react2.default.createElement(_BirthdateFormContainer2.default, null),
+	      _react2.default.createElement(_LifeContainer2.default, null)
 	    )
 	  );
 	};
@@ -23375,6 +23375,12 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -23383,57 +23389,59 @@
 
 	var _actions = __webpack_require__(208);
 
+	var _BirthdateForm = __webpack_require__(209);
+
+	var _BirthdateForm2 = _interopRequireDefault(_BirthdateForm);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _React$PropTypes = _react2.default.PropTypes,
-	    func = _React$PropTypes.func,
-	    string = _React$PropTypes.string,
-	    number = _React$PropTypes.number;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	var BirthdateInput = _react2.default.createClass({
-	  displayName: 'BirthdateInput',
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	  propTypes: {
-	    birthdate: string,
-	    weeksLived: number,
-	    onBirthdateUpdate: func
-	  },
+	var BirthdateFormContainer = function (_Component) {
+	  _inherits(BirthdateFormContainer, _Component);
 
-	  render: function render() {
-	    var weekInflection = 'weeks';
+	  function BirthdateFormContainer() {
+	    _classCallCheck(this, BirthdateFormContainer);
 
-	    if (this.props.weeksLived === 1) {
-	      weekInflection = 'week';
-	    }
+	    var _this = _possibleConstructorReturn(this, (BirthdateFormContainer.__proto__ || Object.getPrototypeOf(BirthdateFormContainer)).call(this));
 
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'birthdate_form' },
-	      _react2.default.createElement(
-	        'h4',
-	        null,
-	        'Enter your birthdate'
-	      ),
-	      _react2.default.createElement('input', { type: 'text', name: 'birthdate', placeholder: 'mm/dd/yyyy', value: this.props.birthdate, onChange: this.handleChange }),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'You have been alive for: ',
-	          this.props.weeksLived,
-	          ' ',
-	          weekInflection
-	        )
-	      )
-	    );
-	  },
-	  handleChange: function handleChange(event) {
-	    this.props.onBirthdateUpdate(event.target.value);
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
 	  }
-	});
+
+	  _createClass(BirthdateFormContainer, [{
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.props.birthdateUpdate(e.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          birthdate = _props.birthdate,
+	          weeksLived = _props.weeksLived;
+
+
+	      return _react2.default.createElement(_BirthdateForm2.default, {
+	        birthdate: birthdate,
+	        weeksLived: weeksLived,
+	        onChange: this.handleChange
+	      });
+	    }
+	  }]);
+
+	  return BirthdateFormContainer;
+	}(_react.Component);
+
+	BirthdateFormContainer.propTypes = {
+	  birthdate: _react.PropTypes.string,
+	  weeksLived: _react.PropTypes.number,
+	  birthdateUpdate: _react.PropTypes.func
+	};
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
@@ -23442,15 +23450,11 @@
 	  };
 	};
 
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    onBirthdateUpdate: function onBirthdateUpdate(value) {
-	      dispatch((0, _actions.birthdateUpdate)(value));
-	    }
-	  };
+	var mapDispatchToProps = {
+	  birthdateUpdate: _actions.birthdateUpdate
 	};
 
-	module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BirthdateInput);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BirthdateFormContainer);
 
 /***/ },
 /* 208 */
@@ -23490,36 +23494,86 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(173);
-
-	var _Week = __webpack_require__(210);
-
-	var _Week2 = _interopRequireDefault(_Week);
+	var _helpers = __webpack_require__(210);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _React$PropTypes = _react2.default.PropTypes,
-	    arrayOf = _React$PropTypes.arrayOf,
-	    object = _React$PropTypes.object;
+	var BirthdateForm = function BirthdateForm(_ref) {
+	  var birthdate = _ref.birthdate,
+	      weeksLived = _ref.weeksLived,
+	      onChange = _ref.onChange;
 
+	  var inflection = (0, _helpers.inflect)(weeksLived, 'week', 'weeks');
 
-	var Life = _react2.default.createClass({
-	  displayName: 'Life',
-
-	  propTypes: {
-	    weeks: arrayOf(object)
-	  },
-
-	  render: function render() {
-	    return _react2.default.createElement(
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'birthdate_form' },
+	    _react2.default.createElement(
+	      'h4',
+	      null,
+	      'Enter your birthdate'
+	    ),
+	    _react2.default.createElement('input', {
+	      type: 'text',
+	      name: 'birthdate',
+	      placeholder: 'mm/dd/yyyy',
+	      value: birthdate,
+	      onChange: onChange
+	    }),
+	    _react2.default.createElement(
 	      'div',
-	      { className: 'life' },
-	      this.props.weeks.map(function (week) {
-	        return _react2.default.createElement(_Week2.default, { inThePast: week.inThePast, key: week.id });
-	      })
-	    );
-	  }
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'You have been alive for: ',
+	        weeksLived,
+	        ' ',
+	        inflection
+	      )
+	    )
+	  );
+	};
+
+	BirthdateForm.propTypes = {
+	  birthdate: _react.PropTypes.string,
+	  weeksLived: _react.PropTypes.number,
+	  onChange: _react.PropTypes.func
+	};
+
+	exports.default = BirthdateForm;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
+	exports.inflect = inflect;
+	function inflect(number, singular, plural) {
+	  return number === 1 ? singular : plural;
+	}
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(173);
+
+	var _Life = __webpack_require__(212);
+
+	var _Life2 = _interopRequireDefault(_Life);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
@@ -23527,10 +23581,47 @@
 	  };
 	};
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Life);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Life2.default);
 
 /***/ },
-/* 210 */
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Week = __webpack_require__(213);
+
+	var _Week2 = _interopRequireDefault(_Week);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Life = function Life(_ref) {
+	  var weeks = _ref.weeks;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'life' },
+	    weeks.map(function (week) {
+	      return _react2.default.createElement(_Week2.default, { inThePast: week.inThePast, key: week.id });
+	    })
+	  );
+	};
+
+	Life.propTypes = {
+	  weeks: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	};
+
+	exports.default = Life;
+
+/***/ },
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23545,21 +23636,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bool = _react2.default.PropTypes.bool;
+	var Week = function Week(_ref) {
+	  var inThePast = _ref.inThePast;
 
+	  var weekClasses = inThePast ? 'week is-in-the-past' : 'week';
 
-	var Week = _react2.default.createClass({
-	  displayName: 'Week',
+	  return _react2.default.createElement('div', { className: weekClasses });
+	};
 
-	  propTypes: {
-	    inThePast: bool
-	  },
-
-	  render: function render() {
-	    var weekClass = this.props.inThePast ? 'week is-in-the-past' : 'week';
-	    return _react2.default.createElement('div', { className: weekClass });
-	  }
-	});
+	Week.propTypes = {
+	  inThePast: _react.PropTypes.bool
+	};
 
 	exports.default = Week;
 

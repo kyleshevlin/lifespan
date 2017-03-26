@@ -1,18 +1,13 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-const { bool } = React.PropTypes
+const Week = ({ inThePast }) => {
+  const weekClasses = inThePast ? 'week is-in-the-past' : 'week'
 
-const Week = React.createClass({
-  propTypes: {
-    inThePast: bool
-  },
+  return <div className={weekClasses} />
+}
 
-  render () {
-    let weekClass = this.props.inThePast ? 'week is-in-the-past' : 'week'
-    return (
-      <div className={weekClass} />
-    )
-  }
-})
+Week.propTypes = {
+  inThePast: PropTypes.bool
+}
 
 export default Week
