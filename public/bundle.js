@@ -21523,7 +21523,9 @@
 
 	var _reactRedux = __webpack_require__(18);
 
-	var _store = __webpack_require__(50);
+	var _constants = __webpack_require__(50);
+
+	var _store = __webpack_require__(51);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -21531,7 +21533,7 @@
 
 	var _BirthdateFormContainer2 = _interopRequireDefault(_BirthdateFormContainer);
 
-	var _LifeContainer = __webpack_require__(59);
+	var _LifeContainer = __webpack_require__(62);
 
 	var _LifeContainer2 = _interopRequireDefault(_LifeContainer);
 
@@ -21560,7 +21562,7 @@
 	        _react2.default.createElement(
 	          'p',
 	          null,
-	          'Below, you will see a circle for every week in a 90-year lifespan. It\'s\n        a lot of weeks. 4,680 to be exact. Enter your birthdate into the input\n        below and see how many weeks you have lived, and how many you have\n        remaining.'
+	          'Below, you will see a circle for every week in a 90-year lifespan. It\'s\n        a lot of weeks. ' + _constants.WEEKS_IN_LIFE + ' to be exact. Enter your birthdate into the input\n        below and see how many weeks you have lived and how many you have\n        remaining.'
 	        )
 	      ),
 	      _react2.default.createElement(_BirthdateFormContainer2.default, null),
@@ -23998,6 +24000,17 @@
 
 /***/ }),
 /* 50 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var WEEKS_IN_LIFE = exports.WEEKS_IN_LIFE = 4680;
+
+/***/ }),
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24008,9 +24021,9 @@
 
 	var _redux = __webpack_require__(28);
 
-	var _reduxDevtoolsExtension = __webpack_require__(51);
+	var _reduxDevtoolsExtension = __webpack_require__(52);
 
-	var _reducers = __webpack_require__(52);
+	var _reducers = __webpack_require__(53);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24021,7 +24034,7 @@
 	exports.default = store;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24040,7 +24053,7 @@
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24051,7 +24064,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _constants = __webpack_require__(53);
+	var _constants = __webpack_require__(50);
 
 	var _actionTypes = __webpack_require__(54);
 
@@ -24123,17 +24136,6 @@
 	};
 
 	exports.default = rootReducer;
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var WEEKS_IN_LIFE = exports.WEEKS_IN_LIFE = 4680;
 
 /***/ }),
 /* 54 */
@@ -24279,9 +24281,13 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _constants = __webpack_require__(53);
+	var _constants = __webpack_require__(50);
 
 	var _helpers = __webpack_require__(58);
+
+	var _Legend = __webpack_require__(59);
+
+	var _Legend2 = _interopRequireDefault(_Legend);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24296,41 +24302,46 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'birthdate_form' },
-	    _react2.default.createElement(
-	      'h4',
-	      null,
-	      'Enter your birthdate'
-	    ),
-	    _react2.default.createElement('input', {
-	      className: 'birthdate_form-input',
-	      name: 'birthdate',
-	      onChange: onChange,
-	      placeholder: 'mm/dd/yyyy',
-	      type: 'text',
-	      value: birthdate
-	    }),
+	    { className: 'birthdate-wrap' },
 	    _react2.default.createElement(
 	      'div',
-	      null,
-	      weeksLived > 0 ? _react2.default.createElement(
-	        _react.Fragment,
+	      { className: 'birthdate_form' },
+	      _react2.default.createElement(
+	        'h3',
 	        null,
-	        _react2.default.createElement(
-	          'p',
+	        'Enter Your Birthdate'
+	      ),
+	      _react2.default.createElement('input', {
+	        className: 'birthdate_form-input',
+	        name: 'birthdate',
+	        onChange: onChange,
+	        placeholder: 'mm/dd/yyyy',
+	        type: 'text',
+	        value: birthdate
+	      }),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        weeksLived > 0 ? _react2.default.createElement(
+	          _react.Fragment,
 	          null,
-	          'You have been alive for: ',
-	          weeksLived,
-	          ' ',
-	          weeksInflection(weeksLived)
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'You have ' + til90 + ' ' + weeksInflection(til90) + ' until you\'re 90 years old.'
-	        )
-	      ) : null
-	    )
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'You have been alive for: ',
+	            weeksLived,
+	            ' ',
+	            weeksInflection(weeksLived)
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'You have ' + til90 + ' ' + weeksInflection(til90) + ' until you\'re 90 years old.'
+	          )
+	        ) : null
+	      )
+	    ),
+	    _react2.default.createElement(_Legend2.default, null)
 	  );
 	};
 
@@ -24369,21 +24380,62 @@
 	  value: true
 	});
 
-	var _reactRedux = __webpack_require__(18);
+	var _react = __webpack_require__(1);
 
-	var _Life = __webpack_require__(60);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _Life2 = _interopRequireDefault(_Life);
+	var _Week = __webpack_require__(60);
+
+	var _Week2 = _interopRequireDefault(_Week);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    weeks: state.weeks
-	  };
+	var Legend = function Legend() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'legend' },
+	    _react2.default.createElement(
+	      'h4',
+	      null,
+	      'Legend'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { style: { marginBottom: '.5em' } },
+	      _react2.default.createElement(_Week2.default, null),
+	      ' ',
+	      _react2.default.createElement(
+	        'span',
+	        { style: { display: 'inline-block', verticalAlign: 'middle' } },
+	        'Week'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { style: { marginBottom: '.5em' } },
+	      _react2.default.createElement(_Week2.default, { hasBeenLived: true }),
+	      ' ',
+	      _react2.default.createElement(
+	        'span',
+	        { style: { display: 'inline-block', verticalAlign: 'middle' } },
+	        'Week You Have Lived'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { style: { marginBottom: '.5em' } },
+	      _react2.default.createElement(_Week2.default, { decadeBirthday: true }),
+	      ' ',
+	      _react2.default.createElement(
+	        'span',
+	        { style: { display: 'inline-block', verticalAlign: 'middle' } },
+	        'Week of Your Birthday, Every 10 Years'
+	      )
+	    )
+	  );
 	};
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Life2.default);
+	exports.default = Legend;
 
 /***/ }),
 /* 60 */
@@ -24395,8 +24447,6 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -24405,48 +24455,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Week = __webpack_require__(61);
-
-	var _Week2 = _interopRequireDefault(_Week);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Life = function Life(_ref) {
-	  var weeks = _ref.weeks;
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'life' },
-	    weeks.map(function (week) {
-	      return _react2.default.createElement(_Week2.default, _extends({ key: week.id }, week));
-	    })
-	  );
-	};
-
-	Life.propTypes = {
-	  weeks: _propTypes2.default.arrayOf(_propTypes2.default.object)
-	};
-
-	exports.default = Life;
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _propTypes = __webpack_require__(20);
-
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-
-	var _classnames = __webpack_require__(62);
+	var _classnames = __webpack_require__(61);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24469,7 +24478,7 @@
 	exports.default = Week;
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -24525,6 +24534,75 @@
 		}
 	}());
 
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(18);
+
+	var _Life = __webpack_require__(63);
+
+	var _Life2 = _interopRequireDefault(_Life);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    weeks: state.weeks
+	  };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Life2.default);
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(20);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _Week = __webpack_require__(60);
+
+	var _Week2 = _interopRequireDefault(_Week);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Life = function Life(_ref) {
+	  var weeks = _ref.weeks;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'life' },
+	    weeks.map(function (week) {
+	      return _react2.default.createElement(_Week2.default, _extends({ key: week.id }, week));
+	    })
+	  );
+	};
+
+	Life.propTypes = {
+	  weeks: _propTypes2.default.arrayOf(_propTypes2.default.object)
+	};
+
+	exports.default = Life;
 
 /***/ })
 /******/ ]);

@@ -1,3 +1,8 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.4;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -8,9 +13,8 @@
   margin: 0 auto 4em;
 }
 
-.birthdate_form {
+.birthdate-wrap {
   margin-bottom: 2em;
-  text-align: center;
 }
 
 .birthdate_form-input {
@@ -24,7 +28,8 @@
 
 .week {
   display: inline-block;
-  background-color: #ddd;
+  vertical-align: middle;
+  background-color: rgb(230, 230, 230);
   width: 14px;
   height: 14px;
   border-radius: 50%;
@@ -32,9 +37,22 @@
 }
 
 .week.has-been-lived {
-  background-color: red;
+  background-color: rgb(230, 0, 0);
 }
 
 .week.is-decade-birthday {
-  background-color: blue;
+  background-color: rgb(0, 0, 230);
+}
+
+/* Media Queries */
+@media (min-width: 900px) {
+  .birthdate-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .birthdate_form {
+    margin-right: 2em;
+  }
 }
