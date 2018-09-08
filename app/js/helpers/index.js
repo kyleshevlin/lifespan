@@ -1,3 +1,2 @@
-export function inflect (number, singular, plural) {
-  return number === 1 ? singular : plural
-}
+export const inflect = singular => plural => number =>
+  number === 1 ? singular : plural

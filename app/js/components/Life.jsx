@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Week from './Week'
 
 const Life = ({ weeks }) => (
-  <div className='life'>
-    {weeks.map(week => <Week inThePast={week.inThePast} key={week.id} />)}
+  <div className="life">
+    {weeks.map(week => <Week key={week.id} {...week} />)}
   </div>
 )
 

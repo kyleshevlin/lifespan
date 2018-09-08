@@ -1,20 +1,21 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { birthdateUpdate } from '../actions'
 import BirthdateForm from '../components/BirthdateForm'
 
 class BirthdateFormContainer extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.props.birthdateUpdate(e.target.value)
   }
 
-  render () {
+  render() {
     const { birthdate, weeksLived } = this.props
 
     return (
@@ -42,4 +43,6 @@ const mapDispatchToProps = {
   birthdateUpdate
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BirthdateFormContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  BirthdateFormContainer
+)

@@ -3,19 +3,38 @@
   margin: 0 auto;
 }
 
+.intro {
+  max-width: 700px;
+  margin: 0 auto 4em;
+}
+
 .birthdate_form {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.birthdate_form-input {
+  font-size: 1.5em;
+  padding: 6px;
+}
+
+.life {
+  margin-bottom: 8em;
 }
 
 .week {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
+  background-color: #ddd;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  margin: 1px;
+  margin: 2px;
 }
 
-.week.is-in-the-past {
-  background: red;
+.week.has-been-lived {
+  background-color: red;
+}
+
+.week.is-decade-birthday {
+  background-color: blue;
 }

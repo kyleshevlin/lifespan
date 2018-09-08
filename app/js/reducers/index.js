@@ -1,12 +1,13 @@
+import { WEEKS_IN_LIFE } from '../constants'
 import * as types from '../constants/actionTypes'
 
-const weeksInLife = 4680
 const initialWeeks = []
 
-for (let i = 0; i < weeksInLife; i++) {
+for (let i = 1; i < WEEKS_IN_LIFE + 1; i++) {
   initialWeeks.push({
-    id: i + 1,
-    inThePast: false
+    id: i,
+    hasBeenLived: false,
+    decadeBirthday: i % 520 === 0
   })
 }
 
@@ -31,19 +32,21 @@ const handleBirthdateInput = (state, action) => {
     weeksState = initialWeeksState
   }
 
-  return Object.assign({}, state, weeksState, { birthdate })
+  return { ...state, ...weeksState, birthdate }
 }
 
 const updateWeeks = (state, action) => {
   const birthdateTime = new Date(action.value).getTime()
-  const weeksLived = Math.floor((state.todayTime - birthdateTime) / (1000 * 3600 * 24 * 7))
+  const weeksLived = Math.floor(
+    (state.todayTime - birthdateTime) / (1000 * 3600 * 24 * 7)
+  )
 
   if (weeksLived < 0) {
     return initialWeeksState
   } else {
     const newWeeks = state.weeks.map((week, index) => {
-      let inThePast = index < weeksLived
-      return { id: week.id, inThePast }
+      const hasBeenLived = index < weeksLived
+      return { ...week, hasBeenLived }
     })
 
     return { weeks: newWeeks, weeksLived }
