@@ -27,7 +27,7 @@
   "homepage": "https://github.com/kyleshevlin/lifespan",
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.15.0",
+    "lodash": "^4.17.13",
     "moment": "^2.14.1",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
