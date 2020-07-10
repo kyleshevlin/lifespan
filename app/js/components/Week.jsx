@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 const Week = ({ decadeBirthday, hasBeenLived }) => {
@@ -10,11 +9,6 @@ const Week = ({ decadeBirthday, hasBeenLived }) => {
   )
 
   return <div className={classes} />
-}
-
-Week.propTypes = {
-  decadeBirthday: PropTypes.bool,
-  hasBeenLived: PropTypes.bool
 }
 
 export default Week

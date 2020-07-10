@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { WEEKS_IN_LIFE } from '../constants'
 import { inflect } from '../helpers'
 import Legend from './Legend'
@@ -41,12 +40,6 @@ const BirthdateForm = ({ birthdate, weeksLived, onChange }) => {
       <Legend />
     </div>
   )
-}
-
-BirthdateForm.propTypes = {
-  birthdate: PropTypes.string,
-  weeksLived: PropTypes.number,
-  onChange: PropTypes.func
 }
 
 export default BirthdateForm
