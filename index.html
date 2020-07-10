@@ -3,8 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Lifespan Visual with React | Kyle Shevlin</title>
-    <link rel="stylesheet" href="./src/normalize.css" />
-    <link rel="stylesheet" href="./src/styles.css" />
+    <style>
+      *,
+      *:after,
+      *:before {
+        box-sizing: inherit;
+      }
+      html {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+        line-height: 1.4;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
