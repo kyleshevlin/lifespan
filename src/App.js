@@ -163,9 +163,11 @@ function Life({ weeks }) {
 function Week({ decadeBirthday, hasBeenLived }) {
   const classes = [
     'week',
-    ...(decadeBirthday && ['is-decade-birthday']),
-    ...(hasBeenLived && ['has-been-lived']),
+    decadeBirthday && 'is-decade-birthday',
+    hasBeenLived && 'has-been-lived',
   ]
+    .filter(Boolean)
+    .join(' ')
 
   return <div className={classes} />
 }
