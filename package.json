@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build index.html",
+    "lint": "eslint src/**/*.js",
     "start": "parcel index.html"
   },
   "repository": {
@@ -24,12 +25,10 @@
   },
   "homepage": "https://github.com/kyleshevlin/lifespan",
   "dependencies": {
-    "classnames": "^2.2.6",
     "parcel-bundler": "^1.12.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "shevyjs": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^7.4.0",

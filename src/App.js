@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
+import { bs } from './shevy'
 
 export const MILLISECONDS_IN_A_WEEK = 1000 * 60 * 60 * 24 * 7
 export const WEEKS_IN_LIFE = 4680
@@ -31,8 +31,9 @@ function handleBirthdateInput(state, action) {
 
 const updateWeeks = (state, action) => {
   const birthdateTime = new Date(action.payload).getTime()
+  const todayTime = new Date().getTime()
   const weeksLived = Math.floor(
-    (state.todayTime - birthdateTime) / MILLISECONDS_IN_A_WEEK
+    (todayTime - birthdateTime) / MILLISECONDS_IN_A_WEEK
   )
 
   if (weeksLived < 0) {
@@ -49,7 +50,6 @@ const updateWeeks = (state, action) => {
 
 const initialState = {
   birthdate: '',
-  todayTime: new Date().getTime(),
   ...initialWeeksState,
 }
 
@@ -65,7 +65,7 @@ const reducer = (state, action) => {
 
 export default function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  const { birthdate, todayTime, weeks, weeksLived } = state
+  const { birthdate, weeks, weeksLived } = state
 
   const handleBirthdateChange = e => {
     dispatch({ type: 'BIRTHDATE_UPDATE', payload: e.target.value })
@@ -108,9 +108,20 @@ function BirthdateForm({ birthdate, weeksLived, onChange }) {
   return (
     <div className="birthdate-wrap">
       <div className="birthdate_form">
-        <h3>Enter Your Birthdate</h3>
+        <label
+          htmlFor="birthdate"
+          style={{
+            display: 'block',
+            fontSize: bs(),
+            fontWeight: 'bold',
+            marginBottom: bs(0.5),
+          }}
+        >
+          Enter Your Birthdate
+        </label>
         <input
           className="birthdate_form-input"
+          id="birthdate"
           name="birthdate"
           onChange={onChange}
           placeholder="mm/dd/yyyy"
@@ -150,11 +161,11 @@ function Life({ weeks }) {
 }
 
 function Week({ decadeBirthday, hasBeenLived }) {
-  const classes = classnames(
+  const classes = [
     'week',
-    { 'is-decade-birthday': decadeBirthday },
-    { 'has-been-lived': hasBeenLived }
-  )
+    ...(decadeBirthday && ['is-decade-birthday']),
+    ...(hasBeenLived && ['has-been-lived']),
+  ]
 
   return <div className={classes} />
 }
