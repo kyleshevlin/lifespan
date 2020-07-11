@@ -4,7 +4,7 @@
   "description": "A visual depiction of every week in a 90 year life and all the ones you have spent already",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build ./src/index.html --out-dir ./",
+    "build": "parcel build ./src/index.html",
     "lint": "eslint src/**/*.js",
     "start": "parcel ./src/index.html"
   },
